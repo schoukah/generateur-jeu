@@ -1,15 +1,40 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useState } from "react";
 import "../index.css";
+
+function ArrayAnim() {
+  const [arrItems, setArritems] = useState([
+    "nounours extraterrestres",
+    "méchant clowns",
+    "bananes maléfiques",
+    "virus destructeurs",
+    "montres en retard",
+  ]);
+  useEffect(() => {
+    const arrItemsLoop = setInterval(() => {
+      for (let i = 0; i < 10; i++) {
+        console.log(arrItems[Math.floor(Math.random() * arrItems.length)]);
+      }
+      return arrItems[Math.floor(Math.random() * arrItems.length)];
+    }, 400);
+    return () => clearInterval(arrItemsLoop);
+  }, []);
+  return (
+    <h2>
+      pour vaincre des <br />
+      <span className="reponse">{setArritems()}</span>
+    </h2>
+  );
+}
 
 class ObjectList extends Component {
   render() {
-    const arrItems = [
-      "nounours extraterrestres",
-      "méchant clowns",
-      "bananes maléfiques",
-      "virus destructeurs",
-      "montres en retard",
-    ];
+    // const arrItems = [
+    //   "nounours extraterrestres",
+    //   "méchant clowns",
+    //   "bananes maléfiques",
+    //   "virus destructeurs",
+    //   "montres en retard",
+    // ];
 
     const mediators = [
       "pelures d'artichauts",
@@ -26,6 +51,20 @@ class ObjectList extends Component {
       "extraterrestres nourissants",
       "pantalons indignés",
     ];
+    // const arrItemsLoop = setInterval(() => {
+    //   for (let i = 0; i < 10; i++) {
+    //     console.log(arrItems[Math.floor(Math.random() * arrItems.length)]);
+    //   }
+    //   return arrItems[Math.floor(Math.random() * arrItems.length)];
+    // }, 400);
+
+    // function Example() {
+    //   return (
+    //     <div>
+    //       <p>hallo</p>
+    //     </div>
+    //   );
+    // }
     // idea for how to go about this:
     // create an animation by mapping or looping through all the above options
     // between each map iteration put a setTimeout function to slow down
@@ -48,12 +87,7 @@ class ObjectList extends Component {
             {mediators[Math.floor(Math.random() * mediators.length)]}
           </span>
         </h2>
-        <h2>
-          pour vaincre des <br />
-          <span className="reponse">
-            {arrItems[Math.floor(Math.random() * arrItems.length)]}
-          </span>
-        </h2>
+        {/* <h2>{ArrayAnim}</h2> */}
       </div>
     );
   }
