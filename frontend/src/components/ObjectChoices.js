@@ -26,6 +26,14 @@ class ObjectList extends Component {
       "extraterrestres nourissants",
       "pantalons indignés",
     ];
+    // idea for how to go about this:
+    // create an animation by mapping or looping through all the above options
+    // between each map iteration put a setTimeout function to slow down
+    // how they'll be displayed.
+    // set the time delay in setTimeout also as a function
+    // this function starts with a counter with the total time remainging,
+    // and uses some trig to define sine wave type of easing curve
+    // each point of that easing curve is applied as time delay
     return (
       <div>
         <h2>
