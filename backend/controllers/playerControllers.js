@@ -8,11 +8,26 @@
 import mongoose from "mongoose";
 import { PlayerSchema } from "../models/playerModel";
 
+// "controllers are the functions that interact
+//  with the database when we are making the request to the API.
+// So basically the flow of things is:
+// the request sends the request to the API
+// with the route and the controller executes the function
+// in the database".
 const Player = mongoose.model("Player", PlayerSchema);
 
 export const addNewPlayer = (req, res) => {
   let newPlayer = new Player(req.body);
   newPlayer.save((err, Player) => {
+    if (err) {
+      res.send(err);
+    }
+    res.json(Player);
+  });
+};
+
+export const getPlayers = (req, res) => {
+  Player.find(({}, err, Player) => {
     if (err) {
       res.send(err);
     }

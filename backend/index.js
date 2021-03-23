@@ -1,12 +1,13 @@
 import bodyParser from "body-parser";
-import express from "express";
-import mongoose from "mongoose";
 // you no longer have to import body-parser
 // it is built into express
 //import bodyParser from "body-parser";
-
+import express from "express";
+import mongoose from "mongoose";
+import routes from "./routes/soccerRoutes";
+import cors from "cors";
 const app = express();
-const PORT = 3001;
+const PORT = 4000;
 
 // mongo connection
 mongoose.Promise = global.Promise;
@@ -22,6 +23,8 @@ mongoose.connect("mongodb://localhost/soccerDB", {
 // use 'express.urlencoded' instead of 'bodyParser.urlencoded({...})
 app.use(express.urlencoded({ extended: true }));
 //app.use(express.json());
+app.use(cors());
+routes(app);
 
 app.get("/", (req, res) => {
   res.send(`Node is running on port ${PORT}`);

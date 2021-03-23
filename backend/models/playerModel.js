@@ -5,11 +5,11 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 export const PlayerSchema = new Schema({
-  firstNname: {
+  firstName: {
     type: String,
     required: true,
   },
-  lastNname: {
+  lastName: {
     type: String,
     required: true,
   },
